@@ -12,56 +12,31 @@ Before you begin, ensure you have the following installed:
 
 ## Running the Application
 
-To run the application, you will need to open four separate terminals and run each service individually.
+This project is a monorepo that uses npm workspaces.
 
-### 1. Start MongoDB
+### 1. Install Dependencies
+
+First, install all the dependencies for the `backend` and `frontend` workspaces from the root of the project:
+
+```bash
+npm install
+```
+
+### 2. Start MongoDB
 
 Ensure your MongoDB server is running.
 
-### 2. Start the Backend API
+### 3. Run the Application
 
-In a new terminal, navigate to the `backend-api` directory and run the following commands:
-
-```bash
-cd services/backend-api
-npm install
-npm start
-```
-
-The backend API will be running on `http://localhost:3001`.
-
-### 3. Start the Ingestion Service
-
-In a new terminal, navigate to the `ingestion-service` directory and run the following commands:
+You can run both the backend and frontend concurrently with a single command from the root of the project:
 
 ```bash
-cd services/ingestion-service
-npm install
-npm start
-```
-
-The ingestion service will be running on `http://localhost:3000`.
-
-### 4. Start the AI Summarizer
-
-In a new terminal, navigate to the `ai-summarizer` directory and run the following commands:
-
-```bash
-cd services/ai-summarizer
-pip install -r requirements.txt
-python src/main.py
-```
-
-The AI summarizer will connect to the ingestion service and the backend API.
-
-### 5. Start the Frontend
-
-In a new terminal, navigate to the `frontend` directory and run the following commands:
-
-```bash
-cd services/frontend
-npm install
 npm run dev
 ```
 
-The frontend development server will be running on `http://localhost:3002`. You can open this URL in your web browser to see the Social Spacefeed in action.
+This will:
+
+-   Start the backend server in development mode.
+-   Start the frontend development server.
+
+The frontend will be available at `http://localhost:3000`, and the backend will be running on the port specified in its environment variables (e.g., `http://localhost:3001`).

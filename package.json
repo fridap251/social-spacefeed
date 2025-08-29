@@ -2,26 +2,24 @@
   "name": "social-spacefeed",
   "version": "1.0.0",
   "description": "A social app that streams mission telemetry with AI-generated summaries and visuals.",
-  "main": "backend/src/index.ts",
+  "main": "backend/dist/index.js",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "start": "node backend/src/index.js",
-    "dev": "ts-node backend/src/index.ts",
-    "build": "tsc -p backend/tsconfig.json",
-    "test": "jest"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^4.0.0",
-    "mongoose": "^5.10.9",
-    "dotenv": "^8.2.0"
+    "start": "npm run start --workspace=backend",
+    "dev": "npm run dev --workspace=backend & npm run start --workspace=frontend",
+    "build": "npm run build --workspaces",
+    "test": "jest",
+    "install-all": "npm install --workspaces"
   },
   "devDependencies": {
     "typescript": "^4.1.2",
     "ts-node": "^9.0.0",
     "jest": "^26.6.0",
     "@types/jest": "^26.0.0",
-    "@types/node": "^14.14.0",
-    "@types/express": "^4.17.8"
+    "@types/node": "^14.14.0"
   },
   "repository": {
     "type": "git",
