@@ -1,0 +1,39 @@
+{
+  "name": "social-spacefeed",
+  "version": "1.0.0",
+  "description": "A social app that streams mission telemetry with AI-generated summaries and visuals.",
+  "main": "backend/src/index.ts",
+  "scripts": {
+    "start": "node backend/src/index.js",
+    "dev": "ts-node backend/src/index.ts",
+    "build": "tsc -p backend/tsconfig.json",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.0.0",
+    "mongoose": "^5.10.9",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2",
+    "ts-node": "^9.0.0",
+    "jest": "^26.6.0",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.14.0",
+    "@types/express": "^4.17.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/social-spacefeed.git"
+  },
+  "keywords": [
+    "social",
+    "telemetry",
+    "AI",
+    "real-time",
+    "streaming"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

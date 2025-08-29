@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  ingestion-service:
+    build: ./services/ingestion-service
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./services/ingestion-service:/app
+      - /app/node_modules
+
+  backend-api:
+    build: ./services/backend-api
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./services/backend-api:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/social-spacefeed
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  ai-summarizer:
+    build: ./services/ai-summarizer
+    volumes:
+      - ./services/ai-summarizer:/app
+    depends_on:
+      - ingestion-service
+      - backend-api
+
+  frontend:
+    build: ./services/frontend
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./services/frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - ingestion-service
+      - backend-api
+
+volumes:
+  mongo-data:
