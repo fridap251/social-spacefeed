@@ -1,76 +1,67 @@
 # Social Spacefeed
 
-Social Spacefeed is a social application designed to stream mission telemetry data in real-time. The platform leverages AI to generate summaries and visuals, enhancing user engagement and understanding of the telemetry information.
+This is the monorepo for the Social Spacefeed application.
 
-## Features
+## Prerequisites
 
-- **Live Telemetry Feed**: Stream real-time telemetry data from missions.
-- **AI-Generated Summaries**: Automatically generated summaries of telemetry data for quick insights.
-- **Visual Representations**: Visuals created from telemetry data to aid in understanding complex information.
-- **User Interaction**: Like and comment functionality to engage with the content.
+Before you begin, ensure you have the following installed:
 
-## Project Structure
+-   [Node.js](https://nodejs.org/) (which includes npm)
+-   [Python](https://www.python.org/)
+-   [MongoDB](https://www.mongodb.com/try/download/community)
 
-The project is organized into three main directories: `backend`, `frontend`, and `shared`.
+## Running the Application
 
-- **backend**: Contains the server-side code, including API routes, controllers, services, and database management.
-- **frontend**: Contains the client-side code, built with React, for rendering the user interface and handling user interactions.
-- **shared**: Contains shared types and utility functions used across both backend and frontend.
+To run the application, you will need to open four separate terminals and run each service individually.
 
-## Getting Started
+### 1. Start MongoDB
 
-### Prerequisites
+Ensure your MongoDB server is running.
 
-- Node.js
-- npm or pnpm
-- Docker (for containerized setup)
+### 2. Start the Backend API
 
-### Installation
+In a new terminal, navigate to the `backend-api` directory and run the following commands:
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd social-spacefeed
-   ```
-
-2. Install dependencies for both backend and frontend:
-   ```
-   cd backend
-   npm install
-   cd ../frontend
-   npm install
-   ```
-
-3. Set up environment variables:
-   - Copy the `.env.example` files in both `backend` and `frontend` to `.env` and fill in the required values.
-
-### Running the Application
-
-To run the application in development mode:
-
-1. Start the backend server:
-   ```
-   cd backend
-   npm run dev
-   ```
-
-2. Start the frontend application:
-   ```
-   cd frontend
-   npm start
-   ```
-
-### Docker Setup
-
-To run the application using Docker, use the following command:
-```
-docker-compose up
+```bash
+cd services/backend-api
+npm install
+npm start
 ```
 
-## Contributing
+The backend API will be running on `http://localhost:3001`.
 
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+### 3. Start the Ingestion Service
 
-## License
+In a new terminal, navigate to the `ingestion-service` directory and run the following commands:
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+```bash
+cd services/ingestion-service
+npm install
+npm start
+```
+
+The ingestion service will be running on `http://localhost:3000`.
+
+### 4. Start the AI Summarizer
+
+In a new terminal, navigate to the `ai-summarizer` directory and run the following commands:
+
+```bash
+cd services/ai-summarizer
+pip install -r requirements.txt
+python src/main.py
+```
+
+The AI summarizer will connect to the ingestion service and the backend API.
+
+### 5. Start the Frontend
+
+In a new terminal, navigate to the `frontend` directory and run the following commands:
+
+```bash
+cd services/frontend
+npm install
+npm run dev
+```
+
+The frontend development server will be running on `http://localhost:3002`. You can open this URL in your web browser to see the Social Spacefeed in action.
