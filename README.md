@@ -26,17 +26,22 @@ npm install
 
 Ensure your MongoDB server is running.
 
-### 3. Run the Application
+### 3. Run the Backend
 
-You can run both the backend and frontend concurrently with a single command from the root of the project:
+In a new terminal, navigate to the `backend` directory and run the following command:
 
 ```bash
 npm run dev
 ```
 
-This will:
+The backend server will be running on `http://localhost:5000`.
 
--   Start the backend server in development mode.
--   Start the frontend development server.
+### 4. Run the Frontend
 
-The frontend will be available at `http://localhost:3000`, and the backend will be running on the port specified in its environment variables (e.g., `http://localhost:3001`).
+In a new terminal, navigate to the `frontend` directory and run the following command:
+
+```bash
+npm start
+```
+
+The frontend development server will be running on `http://localhost:3000`. You can open this URL in your web browser to see the Social Spacefeed in action.
